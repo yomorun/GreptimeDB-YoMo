@@ -1,8 +1,8 @@
 # GreptimeDB x Yomo
 
-This repository demonstrates how GreptimeDB can be used to transport data using YoMo.
+This repository showcases how to utilize GreptimeDB for data transportation via YoMo.
 
-1. install GreptimeDB (The example use docker, more install way see: [greptime docs](https://docs.greptime.com/getting-started/installation/overview))
+1. Install GreptimeDB (This example uses Docker. For additional installation methods, refer to the [GreptimeDB documentation](https://docs.greptime.com/getting-started/installation/overview)).
 
 ```bash
 docker run -p 127.0.0.1:4000-4003:4000-4003 \
@@ -15,39 +15,39 @@ greptime/greptimedb:v0.8.2 standalone start \
 --postgres-addr 0.0.0.0:4003
 ```
 
-2. install YoMo
+2. Install YoMo
 
 ```bash
 curl -fsSL https://get.yomo.run | sh
 ```
 
-3. run yomo zipper
+3. Start yomo zipper
 
 ```bash
 yomo serve -c config.yaml
 ```
 
-4. run yomo sfn, sfn bridges GreptimeDB between YoMo
+4. Run yomo sfn, sfn bridges GreptimeDB between YoMo
 
 ```bash
 cd sfn && yomo run app.go
 ```
 
-5. run yomo source, The source watches a file and writes the new content from the file to the zipper.
+5. Execute the YoMo source. This source monitors a file and streams any new content to the zipper.
 
 ```bash
 go run source/main.go -f metric.log
 ```
 
-Now The source can write Line Protocol data to the `metric.log` file. The data written to the file will be transmitted over the YoMo network and written to the GreptimeDB.
+The source is now configured to write Line Protocol data to `metric.log`. This data, transmitted over the QUIC Protocol, will be seamlessly ingested by GreptimeDB.
 
-1. We provide a bash script to write to `metric.log`.
+6. We provide a bash script to generate data for `metric.log`.
 
 ```bash
 bash metric_ingest.sh
 ```
 
-7. check data be written to the GreptimeDB.
+7. Verify that the data has been successfully written to GreptimeDB.
 
 ```bash
 curl -X POST \
