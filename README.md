@@ -30,7 +30,7 @@ yomo serve -c config.yaml
 4. Run yomo sfn, sfn bridges GreptimeDB between YoMo
 
 ```bash
-cd sfn && yomo run app.go
+cd sfn && GREPTIMEDB_HTTP_ADDR=localhost:4000 yomo run app.go
 ```
 
 5. Execute the YoMo source. This source monitors a file and streams any new content to the zipper.

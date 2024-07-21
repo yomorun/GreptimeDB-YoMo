@@ -13,18 +13,18 @@ import (
 )
 
 var (
-	globalWriter *lineWriter
-	username     = os.Getenv("GREPTIMEDB_USERNAME")
-	password     = os.Getenv("GREPTIMEDB_PASSWORD")
-	writeURL     = os.Getenv("GREPTIMEDB_WRITE_URL")
+	globalWriter     *lineWriter
+	greptimeHttpAddr = os.Getenv("GREPTIMEDB_HTTP_ADDR")
 )
 
 func Init() error {
-	if writeURL == "" {
-		return errors.New("GREPTIMEDB_WRITE_URL not set")
+	if greptimeHttpAddr == "" {
+		return errors.New("GREPTIMEDB_HTTP_ADDR not set")
 	}
 
-	globalWriter = newLineWriter(writeURL, username, password)
+	apiUrl := fmt.Sprintf("http://%s/v1/influxdb/write", greptimeHttpAddr)
+
+	globalWriter = newLineWriter(apiUrl)
 	return nil
 }
 
@@ -47,11 +47,8 @@ type lineWriter struct {
 	HTTPClient http.Client
 }
 
-func newLineWriter(influxURL, username, password string) *lineWriter {
+func newLineWriter(influxURL string) *lineWriter {
 	baseHeader := make(http.Header)
-	if username != "" && password != "" {
-		baseHeader.Add("authorization", fmt.Sprintf("token %s:%s", username, password))
-	}
 
 	return &lineWriter{
 		influxURL:  influxURL,
