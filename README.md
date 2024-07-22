@@ -1,6 +1,41 @@
 # GreptimeDB x Yomo
 
-This repository showcases how to utilize GreptimeDB for data transportation via YoMo.
+This repository showcases how to utilize GreptimeDB for data transportation via
+YoMo. We will use Yomo function to send local IoT or Observability metrics data
+to remote time-series database, GreptimeDB.
+
+```mermaid
+flowchart LR
+    greptimedb[(GreptimeDB)]
+
+    subgraph yomo[YoMo]
+      sfn
+    end
+
+    subgraph local
+      yomo
+      metrics_log
+      source
+    end
+
+    subgraph remote
+      greptimedb
+    end
+
+    metrics_log --> source
+    source --> |YoMo write| sfn
+    sfn --> |Line Protocol over QUIC| greptimedb
+
+```
+
+## Run this demo
+
+0. Clone this reposiotry
+
+```bash
+git clone https://github.com/yomorun/GreptimeDB-YoMo.git
+cd GreptimeDB-YoMo
+```
 
 1. Install GreptimeDB (This example uses Docker. For additional installation methods, refer to the [GreptimeDB documentation](https://docs.greptime.com/getting-started/installation/overview)).
 
