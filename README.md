@@ -1,8 +1,9 @@
 # GreptimeDB x Yomo
 
 This repository showcases how to utilize GreptimeDB for data transportation via
-YoMo. We will use Yomo function to send local IoT or Observability metrics data
-to remote time-series database, GreptimeDB.
+YoMo. We will use Yomo's fast and reliable QUIC transport to send local IoT or
+Observability metrics data to a remote function that ingests the data into
+time-series database, GreptimeDB.
 
 ```mermaid
 flowchart LR
@@ -13,18 +14,18 @@ flowchart LR
     end
 
     subgraph local
-      yomo
       metrics_log
       source
     end
 
     subgraph remote
+      yomo
       greptimedb
     end
 
     metrics_log --> source
-    source --> |YoMo write| sfn
-    sfn --> |Line Protocol over QUIC| greptimedb
+    source --> |fa:fa-cloud Line Protocol over YoMo QUIC Transport| sfn
+    sfn --> |HTTP| greptimedb
 
 ```
 
