@@ -15,11 +15,11 @@ flowchart LR
       sfn
     end
 
-    subgraph local
+    subgraph Edge
       source
     end
 
-    subgraph remote
+    subgraph Central
       yomo
       greptimedb
     end
