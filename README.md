@@ -16,7 +16,6 @@ flowchart LR
     end
 
     subgraph local
-      metrics_log
       source
     end
 
@@ -25,7 +24,6 @@ flowchart LR
       greptimedb
     end
 
-    metrics_log --> source
     source --> |fa:fa-cloud Line Protocol over YoMo QUIC Transport| sfn
     sfn --> |HTTP| greptimedb
 
