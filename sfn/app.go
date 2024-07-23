@@ -38,6 +38,8 @@ func Handler(ctx serverless.Context) {
 	_, err := globalWriter.Write(data)
 	if err != nil {
 		log.Println(err)
+	} else {
+		log.Printf("wrote: %s", string(data))
 	}
 }
 

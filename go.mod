@@ -3,7 +3,7 @@ module github.com/yomorun/greptime-yomo
 go 1.21
 
 require (
-	github.com/nxadm/tail v1.4.11
+	github.com/mackerelio/go-osstat v0.2.5
 	github.com/yomorun/yomo v1.18.10
 )
 
@@ -13,7 +13,6 @@ require (
 	github.com/caarlos0/env/v6 v6.10.1 // indirect
 	github.com/cenkalti/backoff/v4 v4.3.0 // indirect
 	github.com/francoispqt/gojay v1.2.13 // indirect
-	github.com/fsnotify/fsnotify v1.7.0 // indirect
 	github.com/go-logr/logr v1.4.2 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/go-task/slim-sprig/v3 v3.0.0 // indirect
@@ -51,6 +50,5 @@ require (
 	google.golang.org/grpc v1.64.0 // indirect
 	google.golang.org/protobuf v1.34.2 // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1 // indirect
-	gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )

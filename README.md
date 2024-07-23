@@ -15,17 +15,15 @@ flowchart LR
       sfn
     end
 
-    subgraph local
-      metrics_log
+    subgraph Edge
       source
     end
 
-    subgraph remote
+    subgraph Central
       yomo
       greptimedb
     end
 
-    metrics_log --> source
     source --> |fa:fa-cloud Line Protocol over YoMo QUIC Transport| sfn
     sfn --> |HTTP| greptimedb
 
@@ -59,33 +57,25 @@ greptime/greptimedb:v0.8.2 standalone start \
 curl -fsSL https://get.yomo.run | sh
 ```
 
-3. Start yomo zipper
+3. Start yomo zipper service
 
 ```bash
 yomo serve -c config.yaml
 ```
 
-4. Run yomo sfn, sfn bridges GreptimeDB between YoMo
+4. Run yomo sfn, sfn bridges GreptimeDB and YoMo
 
 ```bash
 cd sfn && GREPTIMEDB_HTTP_ADDR=localhost:4000 yomo run app.go
 ```
 
-5. Execute the YoMo source. This source monitors a file and streams any new content to the zipper.
+5. Start the log generator, this will generate ingest data in Line Protocol format and send it to the YoMo zipper service over QUIC.
 
 ```bash
-go run source/main.go -f metric.log
+go run source/main.go
 ```
 
-The source is now configured to write Line Protocol data to `metric.log`. This data, transmitted over the QUIC Protocol, will be seamlessly ingested by GreptimeDB.
-
-6. We provide a bash script to generate data for `metric.log`.
-
-```bash
-bash metric_ingest.sh
-```
-
-7. Verify that the data has been successfully written to GreptimeDB.
+6. Verify that the data has been successfully written to GreptimeDB.
 
 ```bash
 curl -X POST \
