@@ -21,6 +21,7 @@ require (
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.20.0 // indirect
 	github.com/invopop/jsonschema v0.12.0 // indirect
+	github.com/mackerelio/go-osstat v0.2.5 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/matoous/go-nanoid/v2 v2.1.0 // indirect
 	github.com/onsi/ginkgo/v2 v2.18.0 // indirect
