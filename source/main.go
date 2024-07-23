@@ -49,6 +49,7 @@ func main() {
 		if err := source.Write(tag, []byte(data)); err != nil {
 			log.Println(err)
 		}
+		before = after
 	}
 }
 
