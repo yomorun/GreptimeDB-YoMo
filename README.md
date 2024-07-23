@@ -2,10 +2,11 @@
 
 > Boost your GreptimeDB performance with YoMo: Leverage QUIC for rapid and reliable data ingestion.
 
-This repository showcases how to utilize GreptimeDB for data transportation via
-YoMo. We will use Yomo's fast and reliable QUIC transport to send local IoT or
-Observability metrics data to a remote function that ingests the data into
-time-series database, GreptimeDB.
+This repository showcases how to utilize
+[GreptimeDB](https://github.com/GreptimeTeam/greptimedb) for data transportation
+via [YoMo](https://github.com/yomorun/yomo). We will use Yomo's fast and
+reliable QUIC transport to send local IoT or Observability metrics data to a
+remote function that ingests the data into time-series database, GreptimeDB.
 
 ```mermaid
 flowchart LR
