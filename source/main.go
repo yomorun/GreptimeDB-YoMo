@@ -16,10 +16,6 @@ var (
 	zipperAddr = flag.String("z", "127.0.0.1:9000", "yomo zipper address")
 )
 
-func init() {
-	flag.Parse()
-}
-
 func main() {
 	flag.Parse()
 
