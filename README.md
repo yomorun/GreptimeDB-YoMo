@@ -73,7 +73,10 @@ cd sfn && GREPTIMEDB_HTTP_ADDR=localhost:4000 yomo run app.go
 5. Start the log generator, this will generate ingest data in Line Protocol format and send it to the YoMo zipper service over QUIC.
 
 ```bash
+# This sample shows how to monitor the cpu
 go run source/main.go
+# This sample shows how to monitor the gpu
+go run gpu-source/main.go
 ```
 
 6. Verify that the data has been successfully written to GreptimeDB.

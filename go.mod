@@ -8,6 +8,7 @@ require (
 )
 
 require (
+	github.com/NVIDIA/go-nvml v0.12.4-0
 	github.com/bahlo/generic-list-go v0.2.0 // indirect
 	github.com/buger/jsonparser v1.1.1 // indirect
 	github.com/caarlos0/env/v6 v6.10.1 // indirect
