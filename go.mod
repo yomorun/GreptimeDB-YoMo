@@ -3,6 +3,7 @@ module github.com/yomorun/greptime-yomo
 go 1.21
 
 require (
+	github.com/NVIDIA/go-nvml v0.12.4-0
 	github.com/mackerelio/go-osstat v0.2.5
 	github.com/yomorun/yomo v1.18.10
 )

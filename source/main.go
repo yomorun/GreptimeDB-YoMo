@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"os"
 	"time"
 
 	"github.com/mackerelio/go-osstat/cpu"
@@ -19,6 +20,8 @@ var (
 func main() {
 	flag.Parse()
 
+	host, _ := os.Hostname()
+
 	source, err := newSource(*zipperAddr, *credential)
 	if err != nil {
 		log.Fatalln(err)
@@ -26,7 +29,7 @@ func main() {
 
 	// generate logs every 1 second, the format is `monitor,host=Darwin user_cpu=3.35,sys_cpu=9.71,idle_cpu=86.63,memory=3056 1721541370000000000`
 	// Define the log format
-	logFormat := "monitor,host=vm-uswest-3 user_cpu=%f,sys_cpu=%f,idle_cpu=%f %d"
+	logFormat := "monitor,host=%s user_cpu=%f,sys_cpu=%f,idle_cpu=%f %d"
 
 	// Create a ticker that fires every second
 	ticker := time.NewTicker(1 * time.Second)
@@ -40,7 +43,7 @@ func main() {
 		sys := float64(after.System-before.System) / float64(after.Total-before.Total) * 100
 		idle := float64(after.Idle-before.Idle) / float64(after.Total-before.Total) * 100
 		// Generate and print a log entry
-		data := fmt.Sprintf(logFormat, user, sys, idle, time.Now().UnixNano())
+		data := fmt.Sprintf(logFormat, host, user, sys, idle, time.Now().UnixNano())
 		log.Println(data)
 		if err := source.Write(tag, []byte(data)); err != nil {
 			log.Println(err)
