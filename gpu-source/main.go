@@ -16,7 +16,7 @@ var (
 	host       = "local"
 	tag        = uint32(0xC010)
 	credential = ""
-	zipperAddr = ""
+	zipperAddr = "127.0.0.1:9000"
 	source     yomo.Source
 )
 
