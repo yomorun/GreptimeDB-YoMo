@@ -87,3 +87,8 @@ curl -X POST \
   -d 'sql=select * from monitor' \
 http://localhost:4000/v1/sql?db=public
 ```
+
+7. Configure charts for GPU metrics in Greptime Cloud Workbench
+
+<img width="1200" alt="image" src="https://github.com/user-attachments/assets/3d7d54a3-13a9-4478-be2d-705e15f41fdd">
+
